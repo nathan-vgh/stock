@@ -10,32 +10,46 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
 @RestController
 @RequestMapping("/clients")
 class ClientController (private val service: ClientService) {
     @PostMapping
     fun create(@Valid @RequestBody request: RequestClientDto): ResponseEntity<ResponseClientDto> {
-        TODO("Not yet implemented")
+        val createdClient = service.create(request.toEntity())
+
+        val location = ServletUriComponentsBuilder
+            .fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(createdClient.id)
+            .toUri()
+
+        return ResponseEntity.created(location).body(createdClient.toDto())
     }
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long): ResponseEntity<Void> {
-        TODO("Not yet implemented")
+        service.delete(id)
+        return ResponseEntity.noContent().build()
     }
 
     @GetMapping
     fun getAll(): ResponseEntity<List<ResponseClientDto>> {
-        TODO("Not yet implemented")
+        val clients = service.getAll()
+        val clientsDto = clients.map(Client::toDto)
+        return ResponseEntity.ok(clientsDto)
     }
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long): ResponseEntity<ResponseClientDto> {
-        TODO("Not yet implemented")
+        val client = service.getById(id)
+        return ResponseEntity.ok(client.toDto())
     }
 
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @Valid @RequestBody request: RequestClientDto): ResponseEntity<ResponseClientDto> {
-        TODO("Not yet implemented")
+        val updatedClient = service.update(id, request.toEntity())
+        return ResponseEntity.ok(updatedClient.toDto())
     }
 }

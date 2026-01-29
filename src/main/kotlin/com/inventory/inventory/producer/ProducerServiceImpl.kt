@@ -16,7 +16,7 @@ class ProducerServiceImpl(private val repository: ProducerRepository) : Producer
         TODO("Not yet implemented")
     }
 
-    override fun getById(id: Long): Producer? {
+    override fun getById(id: Long): Producer {
         TODO("Not yet implemented")
     }
 

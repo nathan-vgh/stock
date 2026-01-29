@@ -20,7 +20,7 @@ class StockServiceImpl(private val repository: StockRepository): StockService {
         TODO("Not yet implemented")
     }
 
-    override fun update(id: Long, stock: Stock) {
+    override fun update(id: Long, stock: Stock): Stock {
         TODO("Not yet implemented")
     }
 }

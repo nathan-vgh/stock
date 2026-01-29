@@ -5,5 +5,5 @@ interface StockService {
     fun delete(id: Long): Unit
     fun getAll(): List<Stock>
     fun getById(id: Long): Stock
-    fun update(id: Long, stock: Stock)
+    fun update(id: Long, stock: Stock): Stock
 }

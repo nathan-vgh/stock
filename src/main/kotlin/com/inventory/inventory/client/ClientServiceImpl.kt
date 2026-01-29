@@ -16,7 +16,7 @@ class ClientServiceImpl(private val repository: ClientRepository) : ClientServic
         TODO("Not yet implemented")
     }
 
-    override fun getById(id: Long): Client? {
+    override fun getById(id: Long): Client {
         TODO("Not yet implemented")
     }
 

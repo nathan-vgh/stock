@@ -16,7 +16,7 @@ class ProductServiceImpl(private val repository: ProductRepository) : ProductSer
         TODO("Not yet implemented")
     }
 
-    override fun getById(): Product? {
+    override fun getById(id: Long): Product {
         TODO("Not yet implemented")
     }
 
